@@ -43,22 +43,25 @@ public class JarijariMod
 
     public JarijariMod()
     {
+        //イベントバスに関連するクラスIEventBusのeventbus静的変数を格納
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        // Register the commonSetup method for modloading
-        modEventBus.addListener(this::commonSetup);
 
-        // Register ourselves for server and other game events we are interested in
+        //このクラスのインスタンスを渡してインスタンスをイベントバスのリスナーとして登録する
+        //注意1:インスタンスで登録しているので、イベントで使いたいメソッドを定義する場合はインスタンスメソッドにすること
+        //注意2:インスタンスメソッドを定義するときはメソッドの上に@SubscribeEventアノテーションをつけるこ
+        //注意3:もし静的メソッドを使いたい場合はインスタンスではなくクラスで登録すること
+        //ex. MinecraftForge.EVENT_BUS.register(Example.class);
         MinecraftForge.EVENT_BUS.register(this);
 
-        // Register the item to a creative tab
+        //addCreativeメソッド(自作メソッド)をイベントバスのリスナーとして登録する
+        //注意1:上に同じくインスタンスで登録しているので、イベントで使いたいメソッドを定義する場合はインスタンスメソッドにすること
+        //注意2:これの場合、アノテーションはつけない
+        //注意3:もし静的メソッドを登録したい場合は該当クラスに@Mod.EventBusSubscriber(modid = "MOD名", bus = Bus.FORGE, value = Dist.CLIENT)を付けること
+        //下の@Mod.EventBusSubscriberを参照
         modEventBus.addListener(this::addCreative);
     }
 
-    private void commonSetup(final FMLCommonSetupEvent event)
-    {
-
-    }
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event)
