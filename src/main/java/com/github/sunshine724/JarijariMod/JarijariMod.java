@@ -52,6 +52,7 @@ public class JarijariMod
         //注意2:インスタンスメソッドを定義するときはメソッドの上に@SubscribeEventアノテーションをつけるこ
         //注意3:もし静的メソッドを使いたい場合はインスタンスではなくクラスで登録すること
         //ex. MinecraftForge.EVENT_BUS.register(Example.class);
+        //尚、このメソッドを使わずとも該当クラスに@Mod.EventBusSubscriberアノテーションをつけることで自動で登録される
         MinecraftForge.EVENT_BUS.register(this);
 
         //addCreativeメソッド(自作メソッド)をイベントバスのリスナーとして登録する
@@ -63,7 +64,6 @@ public class JarijariMod
     }
 
 
-    // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
 
