@@ -6,5 +6,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraftforge.registries.RegistryObject;
 
 public class Entity_Jarijari {
+    /*テストテスト*/
+    Integer value;
 
 }
