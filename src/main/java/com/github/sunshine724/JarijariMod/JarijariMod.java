@@ -31,6 +31,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 
+import java.util.Iterator;
+
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(JarijariMod.MODID)
 public class JarijariMod
@@ -62,6 +64,7 @@ public class JarijariMod
         //下の@Mod.EventBusSubscriberを参照
         modEventBus.addListener(this::addCreative);
     }
+
 
 
     private void addCreative(BuildCreativeModeTabContentsEvent event)
