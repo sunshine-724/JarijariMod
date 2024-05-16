@@ -63,7 +63,7 @@ public class JarijariMod
         //注意3:もし静的メソッドを使いたい場合はインスタンスではなくクラスで登録すること
         //ex. MinecraftForge.EVENT_BUS.register(Example.class);
         //尚、このメソッドを使わずとも該当クラスに@Mod.EventBusSubscriberアノテーションをつけることで自動で登録される
-        MinecraftForge.EVENT_BUS.register(this);
+//        MinecraftForge.EVENT_BUS.register(this);
 
 
 
