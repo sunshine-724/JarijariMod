@@ -1,8 +1,7 @@
-package com.github.sunshine724.JarijariMod;
+package com.github.sunshine724.Entity;
 
 //https://github.com/sunshine-724/JarijariMod
 
-import com.github.sunshine724.Item.ItemSpawnerJarijari;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.Registries;
@@ -32,7 +31,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 
-import java.math.BigInteger;
 import java.util.Iterator;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -50,12 +48,6 @@ public class JarijariMod
         //イベントバスに関連するクラスIEventBusのeventbus静的変数を格納
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        //試験的に追加,あさひ
-        MinecraftForge.EVENT_BUS.register(modEventBus);
-
-
-        //アイテムレジストリをイベントバスに登録,あさひ
-        ItemSpawnerJarijari.register(modEventBus);
 
         //このクラスのインスタンスを渡してインスタンスをイベントバスのリスナーとして登録する
         //注意1:インスタンスで登録しているので、イベントで使いたいメソッドを定義する場合はインスタンスメソッドにすること
@@ -65,14 +57,14 @@ public class JarijariMod
         //尚、このメソッドを使わずとも該当クラスに@Mod.EventBusSubscriberアノテーションをつけることで自動で登録される
         MinecraftForge.EVENT_BUS.register(this);
 
-
-
         //addCreativeメソッド(自作メソッド)をイベントバスのリスナーとして登録する
         //注意1:上に同じくインスタンスで登録しているので、イベントで使いたいメソッドを定義する場合はインスタンスメソッドにすること
         //注意2:これの場合、アノテーションはつけない
         //注意3:もし静的メソッドを登録したい場合は該当クラスに@Mod.EventBusSubscriber(modid = "MOD名", bus = Bus.FORGE, value = Dist.CLIENT)を付けること
         //下の@Mod.EventBusSubscriberを参照
         modEventBus.addListener(this::addCreative);
+
+        EntityInit.ENTITYS.register(modEventBus); //エンティティをレジストリに追加
     }
 
 
