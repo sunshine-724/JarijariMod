@@ -2,7 +2,6 @@ package com.github.sunshine724.JarijariMod;
 
 //https://github.com/sunshine-724/JarijariMod
 
-import com.github.sunshine724.Item.ItemSpawnerJarijari;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.Registries;
@@ -50,12 +49,6 @@ public class JarijariMod
         //イベントバスに関連するクラスIEventBusのeventbus静的変数を格納
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        //試験的に追加,あさひ
-        MinecraftForge.EVENT_BUS.register(modEventBus);
-
-
-        //アイテムレジストリをイベントバスに登録,あさひ
-        ItemSpawnerJarijari.register(modEventBus);
 
         //このクラスのインスタンスを渡してインスタンスをイベントバスのリスナーとして登録する
         //注意1:インスタンスで登録しているので、イベントで使いたいメソッドを定義する場合はインスタンスメソッドにすること
@@ -64,8 +57,6 @@ public class JarijariMod
         //ex. MinecraftForge.EVENT_BUS.register(Example.class);
         //尚、このメソッドを使わずとも該当クラスに@Mod.EventBusSubscriberアノテーションをつけることで自動で登録される
         MinecraftForge.EVENT_BUS.register(this);
-
-
 
         //addCreativeメソッド(自作メソッド)をイベントバスのリスナーとして登録する
         //注意1:上に同じくインスタンスで登録しているので、イベントで使いたいメソッドを定義する場合はインスタンスメソッドにすること
