@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
-  "textuers": {
+  "textures": {
     "layer0": "jarijarimod:item/spawnerjarijari"
   }
 }
