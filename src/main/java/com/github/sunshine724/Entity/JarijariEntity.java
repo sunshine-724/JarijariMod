@@ -58,7 +58,7 @@ public class JarijariEntity extends Animal {
         //数字が低いほど優先順位が高くなる
         //どの動きを追加したいかはGradle:net.minecraftforge:forge:~~~~/forge~~~~/net/minecraft/world.entity.ai.goalにあるサブクラスを参照
         this.goalSelector.addGoal(0,new FloatGoal(this)); //水中に浮かぶ
-        this.goalSelector.addGoal(1,new PanicGoal(this,1.25D));
+        this.goalSelector.addGoal(1,new PanicGoal(this,1.25D)); //パニック状態で走るため
         this.goalSelector.addGoal(3,new BreedGoal(this,1.0D));
         this.goalSelector.addGoal(5,new FollowParentGoal(this,1.1D));
         this.goalSelector.addGoal(6,new WaterAvoidingRandomStrollGoal(this,1.0D));

@@ -1,4 +1,4 @@
-package com.github.sunshine724.JarijariMod;
+package com.github.sunshine724.Entity;
 
 //https://github.com/sunshine-724/JarijariMod
 
@@ -31,7 +31,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 
-import java.math.BigInteger;
 import java.util.Iterator;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -64,6 +63,8 @@ public class JarijariMod
         //注意3:もし静的メソッドを登録したい場合は該当クラスに@Mod.EventBusSubscriber(modid = "MOD名", bus = Bus.FORGE, value = Dist.CLIENT)を付けること
         //下の@Mod.EventBusSubscriberを参照
         modEventBus.addListener(this::addCreative);
+
+        EntityInit.ENTITYS.register(modEventBus); //エンティティをレジストリに追加
     }
 
 
