@@ -1,7 +1,7 @@
 package com.github.sunshine724.Entity.client.events;
 
 import com.github.sunshine724.Entity.EntityInit;
-import com.github.sunshine724.Entity.client.model.JarijariEntityModel;
+import com.github.sunshine724.Entity.client.model.normal.JarijariEntityNormalModel;
 import com.github.sunshine724.Entity.client.renderer.JarijariEntityRenderer;
 import com.github.sunshine724.JarijariMod.JarijariMod;
 import net.minecraftforge.api.distmarker.Dist;
@@ -21,6 +21,6 @@ public class ClientModEvents {
     //レイヤーの定義をする
     @SubscribeEvent
     public static void registerLayerDefinication(EntityRenderersEvent.RegisterLayerDefinitions event){
-        event.registerLayerDefinition(JarijariEntityModel.LAYER_LOCATION,JarijariEntityModel::createBodyLayer);
+        event.registerLayerDefinition(JarijariEntityNormalModel.LAYER_LOCATION, JarijariEntityNormalModel::createBodyLayer);
     }
 }

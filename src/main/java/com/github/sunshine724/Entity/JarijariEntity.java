@@ -5,6 +5,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -58,19 +59,19 @@ public class JarijariEntity extends Animal {
         //数字が低いほど優先順位が高くなる
         //どの動きを追加したいかはGradle:net.minecraftforge:forge:~~~~/forge~~~~/net/minecraft/world.entity.ai.goalにあるサブクラスを参照
         this.goalSelector.addGoal(0,new FloatGoal(this)); //水中に浮かぶ
-        this.goalSelector.addGoal(1,new PanicGoal(this,1.25D)); //パニック状態で走るため
-        this.goalSelector.addGoal(3,new BreedGoal(this,1.0D));
-        this.goalSelector.addGoal(5,new FollowParentGoal(this,1.1D));
-        this.goalSelector.addGoal(6,new WaterAvoidingRandomStrollGoal(this,1.0D));
-        this.goalSelector.addGoal(7,new LookAtPlayerGoal(this, Player.class,6.0F));
-        this.goalSelector.addGoal(8,new RandomLookAroundGoal(this));
-        this.goalSelector.addGoal(9,new TemptGoal(this,1.0D, Ingredient.of(boneItem),true));
-
+        this.goalSelector.addGoal(1,new PanicGoal(this,1.25D)); //パニック状態で走る
+        this.goalSelector.addGoal(3,new BreedGoal(this,1.0D)); //繁殖行動を制御する
+        this.goalSelector.addGoal(5,new FollowParentGoal(this,1.1D)); //子供のエンティティが親を追いかける
+        this.goalSelector.addGoal(6,new WaterAvoidingRandomStrollGoal(this,1.0D)); //水を避けつつランダムに散歩する
+        this.goalSelector.addGoal(7,new LookAtPlayerGoal(this, Player.class,6.0F)); //プレイヤーを見つめる
+        this.goalSelector.addGoal(8,new RandomLookAroundGoal(this)); //ランダムの周囲を見渡す
+        this.goalSelector.addGoal(9,new TemptGoal(this,1.0D, Ingredient.of(boneItem),true)); //特定のアイテムに引き寄せられる
     }
 
     //エンティティのステータスをデフォルトステータス(今回は狼)からいくつか上書きする
     public static AttributeSupplier.Builder createJarijariAttributes(){
-        return Wolf.createAttributes().add(Attributes.MAX_HEALTH,20.0D).add(Attributes.MOVEMENT_SPEED,0.0D);
+        //Wolfクラスからとってきた
+        return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.30000001192092896).add(Attributes.MAX_HEALTH, 8.0).add(Attributes.ATTACK_DAMAGE, 2.0);
     }
 
     //スポーンするときの条件を引数にあるパラメータを使って判断し、trueかfalseで返す
