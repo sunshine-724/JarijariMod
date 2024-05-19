@@ -78,5 +78,4 @@ public class JarijariEntity extends Animal {
     public static boolean canSpawn(EntityType<JarijariEntity> entityType, ServerLevelAccessor level, MobSpawnType spawnType, BlockPos position, RandomSource random){
         return Animal.checkAnimalSpawnRules(entityType,level,spawnType,position,random);
     }
-
 }
