@@ -20,15 +20,15 @@ public class JarijariEntityWhiteModel<T extends JarijariEntity> extends EntityMo
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(JarijariMod.MODID, "textures/entity/image4.png"), "main");
 
 	private final ModelPart bone;
-	private final ModelPart head;
-	private final ModelPart neck;
-	private final ModelPart box;
+//	private final ModelPart head;
+//	private final ModelPart neck;
+//	private final ModelPart box;
 
 	public JarijariEntityWhiteModel(ModelPart root) {
 		this.bone = root.getChild("bone");
-		this.head = root.getChild("head");
-		this.neck = root.getChild("neck");
-		this.box = root.getChild("box");
+//		this.head = root.getChild("head");
+//		this.neck = root.getChild("neck");
+//		this.box = root.getChild("box");
 	}
 
 	public static LayerDefinition createBodyLayer() {

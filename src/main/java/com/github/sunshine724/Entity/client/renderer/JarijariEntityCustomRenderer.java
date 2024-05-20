@@ -22,7 +22,7 @@ public class JarijariEntityCustomRenderer extends EntityRenderer<JarijariEntity>
     public JarijariEntityCustomRenderer(EntityRendererProvider.Context ctx) {
         super(ctx);
         this.model1 = new JarijariEntityNormalModel<>(ctx.bakeLayer(JarijariEntityNormalModel.LAYER_LOCATION));
-        this.model2 = new JarijariEntityBlueModel<>(ctx.bakeLayer(JarijariEntityBlueModel.LAYER_LOCATION));
+        this.model2 = new JarijariEntityBlueModel<>(ctx.bakeLayer(JarijariEntityBlueModel.LAYER_LOCATION)); //ここでエラー(解消 5/20)
         this.model3 = new JarijariEntityWhiteModel<>(ctx.bakeLayer(JarijariEntityWhiteModel.LAYER_LOCATION));
     }
 
@@ -32,15 +32,19 @@ public class JarijariEntityCustomRenderer extends EntityRenderer<JarijariEntity>
 
         // エンティティの体力に基づいてモデルを選択
 
-        if(entity.getHealth() == 0){
+        if(entity.getHealth() < entity.getMaxHealth()*((float) 1/3)){
             modelToRender = model3;
-        }else if(entity.getHealth() < entity.getMaxHealth()*((float) 2/3)){
+        }else if(entity.getHealth() < entity.getMaxHealth()*(float) 2/3){
             modelToRender = model2;
         }else{
             modelToRender = model1;
         }
 
         poseStack.pushPose();
+        // なぜかモデルが上下反転するため、モデルを上下反転させる
+        poseStack.translate(0.0, 0.75, 0.0); // モデルの高さに合わせて調整(中心座標(0.0)を軸に回転させるため移動させる)
+        poseStack.scale(1.0F, -1.0F, 1.0F);
+        poseStack.translate(0.0, -0.75, 0.0); // モデルの高さに合わせて調整
         modelToRender.renderToBuffer(poseStack, bufferSource.getBuffer(modelToRender.renderType(getTextureLocation(entity))), packedLight, LivingEntityRenderer.getOverlayCoords(entity, 0.0F), 1.0F, 1.0F, 1.0F, 1.0F);
         poseStack.popPose();
 
@@ -50,12 +54,13 @@ public class JarijariEntityCustomRenderer extends EntityRenderer<JarijariEntity>
     @Override
     public ResourceLocation getTextureLocation(JarijariEntity entity) {
 
-        if(entity.getHealth() == 0){
-            return new ResourceLocation("modid", "textures/entity/image4.png");
-        }else if(entity.getHealth() < entity.getMaxHealth()*((float) 2/3)){
-            return new ResourceLocation("modid", "textures/entity/image3.png");
+        if(entity.getHealth() < entity.getMaxHealth()*((float) 1/3)){
+            return new ResourceLocation(JarijariMod.MODID, "textures/entity/image4.png");
+        }else if(entity.getHealth() < entity.getMaxHealth()*(float) 2/3){
+            return new ResourceLocation(JarijariMod.MODID, "textures/entity/image3.png");
         }else{
-            return new ResourceLocation("modid", "textures/entity/image2.png");
+            return new ResourceLocation(JarijariMod.MODID, "textures/entity/image2.png");
         }
+
     }
 }

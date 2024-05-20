@@ -22,19 +22,19 @@ public class JarijariEntityBlueModel<T extends JarijariEntity> extends EntityMod
 			new ModelLayerLocation(new ResourceLocation(JarijariMod.MODID, "textures/entity/image3.png"), "main");
 
 	private final ModelPart bone;
-	private final ModelPart head;
-	private final ModelPart neck;
-	private final ModelPart box;
+//	private final ModelPart head;
+//	private final ModelPart neck;
+//	private final ModelPart box;
 
 	public JarijariEntityBlueModel(ModelPart root) {
 		this.bone = root.getChild("bone");
-		this.head = root.getChild("head");
-		this.neck = root.getChild("neck");
-		this.box = root.getChild("box");
+//		this.head = root.getChild("head");
+//		this.neck = root.getChild("neck");
+//		this.box = root.getChild("box");
 	}
 
 	public static LayerDefinition createBodyLayer() {
-		MeshDefinition meshdefinition = new MeshDefinition();
+		var meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
 		PartDefinition bone = partdefinition.addOrReplaceChild("bone", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
@@ -55,6 +55,9 @@ public class JarijariEntityBlueModel<T extends JarijariEntity> extends EntityMod
 	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
 		bone.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+//		head.render(poseStack,vertexConsumer,packedLight,packedOverlay,red,green,blue,alpha);
+//		neck.render(poseStack,vertexConsumer,packedLight,packedOverlay,red,green,blue,alpha);
+//		box.render(poseStack,vertexConsumer,packedLight,packedOverlay,red,green,blue,alpha);
 	}
 
 	@Override

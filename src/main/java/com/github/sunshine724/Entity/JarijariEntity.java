@@ -11,8 +11,12 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.target.*;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.Turtle;
 import net.minecraft.world.entity.animal.Wolf;
+import net.minecraft.world.entity.animal.horse.Llama;
+import net.minecraft.world.entity.monster.AbstractSkeleton;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -66,12 +70,16 @@ public class JarijariEntity extends Animal {
         this.goalSelector.addGoal(7,new LookAtPlayerGoal(this, Player.class,6.0F)); //プレイヤーを見つめる
         this.goalSelector.addGoal(8,new RandomLookAroundGoal(this)); //ランダムの周囲を見渡す
         this.goalSelector.addGoal(9,new TemptGoal(this,1.0D, Ingredient.of(boneItem),true)); //特定のアイテムに引き寄せられる
+
     }
 
     //エンティティのステータスをデフォルトステータス(今回は狼)からいくつか上書きする
     public static AttributeSupplier.Builder createJarijariAttributes(){
+        //WolfクラスのsetTameメソッドとmobInteractを参照
+//        Wolf.createAttributes();
         //Wolfクラスからとってきた
         return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.30000001192092896).add(Attributes.MAX_HEALTH, 8.0).add(Attributes.ATTACK_DAMAGE, 2.0);
+
     }
 
     //スポーンするときの条件を引数にあるパラメータを使って判断し、trueかfalseで返す

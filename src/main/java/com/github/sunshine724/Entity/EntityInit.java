@@ -18,7 +18,7 @@ public class EntityInit {
     //モブカテゴリとサイズとモブの名前を登録する
     public static final RegistryObject<EntityType<JarijariEntity>> JARIJARI_ENTITY = ENTITYS.register("jarijari_entity",
             () -> EntityType.Builder.<JarijariEntity>of(JarijariEntity::new, MobCategory.CREATURE)
-                    .sized(2.0f,2.0f)
+                    .sized(1.0f,1.0f)
                     .build(new ResourceLocation(JarijariMod.MODID,"jarijari_entity").toString()));
 
 }
