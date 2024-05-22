@@ -1,5 +1,6 @@
 package com.github.sunshine724.Tab;
 
+import com.github.sunshine724.Item.ItemSpawnerJarijari;
 import com.github.sunshine724.JarijariMod.JarijariMod;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -13,9 +14,9 @@ public class Introductiontabs {
     public static final RegistryObject<CreativeModeTab> INTRODUCTION_TAB = TABS.register("introduction_tab",
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("creativetabs.introduction_tab"))
-                    .icon(ItemSpawnerJarijariMod.RAW_ORIHALCON.get()::getDefaultInstance)
+                    .icon(Jaitem.JARIHORSE.get()::getDefaultInstance)
                     .displayItems(((pParameters,pOutput) ->{
-                        pOutput.accept(IntroductionItems.RAW_ORIHALCON.get());
+                        pOutput.accept(ItemSpawnerJarijari.SpawnerJarijari.get());
                     }))
                     .build());
 

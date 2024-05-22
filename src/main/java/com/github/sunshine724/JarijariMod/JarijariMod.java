@@ -3,6 +3,7 @@ package com.github.sunshine724.JarijariMod;
 //https://github.com/sunshine-724/JarijariMod
 
 import com.github.sunshine724.Item.ItemSpawnerJarijari;
+import com.github.sunshine724.Tab.Jaitem;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.Registries;
@@ -57,6 +58,9 @@ public class JarijariMod
         //アイテムレジストリをイベントバスに登録,あさひ
         ItemSpawnerJarijari.register(modEventBus);
 
+        //アイテムレジストリをイベントバスに登録,佐々木
+        Jaitem.register(modEventBus);
+
         //このクラスのインスタンスを渡してインスタンスをイベントバスのリスナーとして登録する
         //注意1:インスタンスで登録しているので、イベントで使いたいメソッドを定義する場合はインスタンスメソッドにすること
         //注意2:インスタンスメソッドを定義するときはメソッドの上に@SubscribeEventアノテーションをつけるこ
@@ -79,7 +83,9 @@ public class JarijariMod
 
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
-
+        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS){
+            event.accept(Jaitem.JARIHORSE);
+        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
