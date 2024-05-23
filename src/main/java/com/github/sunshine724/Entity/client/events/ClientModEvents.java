@@ -31,3 +31,4 @@ public class ClientModEvents {
         event.registerLayerDefinition(JarijariEntityWhiteModel.LAYER_LOCATION,JarijariEntityWhiteModel::createBodyLayer);
     }
 }
+
