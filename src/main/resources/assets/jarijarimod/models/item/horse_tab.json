@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "jarijariMod:item/horse_tab"
+    "layer0": "jarijarimod:item/horse_tab"
   }
 }
