@@ -4,37 +4,20 @@ package com.github.sunshine724.JarijariMod;
 
 import com.github.sunshine724.Entity.EntityInit;
 import com.github.sunshine724.Item.ItemSpawnerJarijari;
+import com.github.sunshine724.Tab.JarijariTabs;
+import com.github.sunshine724.Tab.Jaitem;
 import com.mojang.logging.LogUtils;
-import net.minecraft.client.Minecraft;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
-
-import java.math.BigInteger;
-import java.util.Iterator;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(JarijariMod.MODID)
@@ -57,6 +40,13 @@ public class JarijariMod
 
         //アイテムレジストリをイベントバスに登録,あさひ
         ItemSpawnerJarijari.register(modEventBus);
+
+        //アイテムレジストリをイベントバスに登録,佐々木
+        Jaitem.register(modEventBus);
+
+
+        //クリエイティブタブをイベントバスに登録,佐々木
+        JarijariTabs.register(modEventBus);
 
         //このクラスのインスタンスを渡してインスタンスをイベントバスのリスナーとして登録する
         //注意1:インスタンスで登録しているので、イベントで使いたいメソッドを定義する場合はインスタンスメソッドにすること
@@ -82,7 +72,9 @@ public class JarijariMod
 
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
-
+        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS){
+            event.accept(Jaitem.JARIHORSE);
+        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

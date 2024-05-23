@@ -1,5 +1,6 @@
 package com.github.sunshine724.Tab;
 
+import com.github.sunshine724.Item.ItemSpawnerJarijari;
 import com.github.sunshine724.JarijariMod.JarijariMod;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
