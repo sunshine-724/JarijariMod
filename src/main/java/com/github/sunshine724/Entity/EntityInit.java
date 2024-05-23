@@ -16,9 +16,9 @@ public class EntityInit {
     public static final DeferredRegister<EntityType<?>> ENTITYS = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES,JarijariMod.MODID);
 
     //モブカテゴリとサイズとモブの名前を登録する
-    public static final RegistryObject<EntityType<JarijariEntity>> JARIJARI_ENTITY = ENTITYS.register("Jarijari_entity",
+    public static final RegistryObject<EntityType<JarijariEntity>> JARIJARI_ENTITY = ENTITYS.register("jarijari_entity",
             () -> EntityType.Builder.<JarijariEntity>of(JarijariEntity::new, MobCategory.CREATURE)
                     .sized(1.0f,1.0f)
-                    .build(new ResourceLocation(JarijariMod.MODID,"Jarijari_entity").toString()));
+                    .build(new ResourceLocation(JarijariMod.MODID,"jarijari_entity").toString()));
 
 }

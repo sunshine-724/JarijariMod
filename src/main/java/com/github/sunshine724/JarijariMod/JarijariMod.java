@@ -2,6 +2,7 @@ package com.github.sunshine724.JarijariMod;
 
 //https://github.com/sunshine-724/JarijariMod
 
+import com.github.sunshine724.Entity.EntityInit;
 import com.github.sunshine724.Item.ItemSpawnerJarijari;
 import com.github.sunshine724.Tab.JarijariTabs;
 import com.github.sunshine724.Tab.Jaitem;
@@ -53,7 +54,7 @@ public class JarijariMod
         //注意3:もし静的メソッドを使いたい場合はインスタンスではなくクラスで登録すること
         //ex. MinecraftForge.EVENT_BUS.register(Example.class);
         //尚、このメソッドを使わずとも該当クラスに@Mod.EventBusSubscriberアノテーションをつけることで自動で登録される
-        MinecraftForge.EVENT_BUS.register(this);
+//        MinecraftForge.EVENT_BUS.register(this);
 
 
 
@@ -63,6 +64,8 @@ public class JarijariMod
         //注意3:もし静的メソッドを登録したい場合は該当クラスに@Mod.EventBusSubscriber(modid = "MOD名", bus = Bus.FORGE, value = Dist.CLIENT)を付けること
         //下の@Mod.EventBusSubscriberを参照
         modEventBus.addListener(this::addCreative);
+        EntityInit.ENTITYS.register(modEventBus); //エンティティをレジストリに追加
+
     }
 
 
