@@ -3,6 +3,7 @@ package com.github.sunshine724.JarijariMod;
 //https://github.com/sunshine-724/JarijariMod
 
 import com.github.sunshine724.Item.ItemSpawnerJarijari;
+import com.github.sunshine724.Tab.Introductiontabs;
 import com.github.sunshine724.Tab.Jaitem;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
@@ -60,6 +61,10 @@ public class JarijariMod
 
         //アイテムレジストリをイベントバスに登録,佐々木
         Jaitem.register(modEventBus);
+
+
+        //クリエイティブタブをイベントバスに登録,佐々木
+        Introductiontabs.register(modEventBus);
 
         //このクラスのインスタンスを渡してインスタンスをイベントバスのリスナーとして登録する
         //注意1:インスタンスで登録しているので、イベントで使いたいメソッドを定義する場合はインスタンスメソッドにすること
