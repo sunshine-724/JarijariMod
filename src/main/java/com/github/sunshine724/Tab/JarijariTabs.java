@@ -9,11 +9,11 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
-public class Introductiontabs {
+public class JarijariTabs {
     public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, JarijariMod.MODID);
-    public static final RegistryObject<CreativeModeTab> INTRODUCTION_TAB = TABS.register("introduction_tab",
+    public static final RegistryObject<CreativeModeTab> JARIJARI_TAB = TABS.register("jarijari_tab",
             () -> CreativeModeTab.builder()
-                    .title(Component.translatable("creativetabs.introduction_tab"))
+                    .title(Component.translatable("creativetabs.jarijari_tab"))
                     .icon(Jaitem.JARIHORSE.get()::getDefaultInstance)
                     .displayItems(((pParameters,pOutput) ->{
                         pOutput.accept(ItemSpawnerJarijari.SpawnerJarijari.get());
