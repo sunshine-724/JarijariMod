@@ -18,7 +18,7 @@ public class ItemSpawnerJarijari {
 
 
     public static final RegistryObject<ForgeSpawnEggItem> SpawnerJarijari = ITEMS.register("spawnerjarijari",
-            () -> new ForgeSpawnEggItem(EntityInit.JARIJARI_ENTITY,0,0,new Item.Properties())); //テスト用コード Sunshine724
+           () -> new ForgeSpawnEggItem(EntityInit.JARIJARI_ENTITY,0,0,new Item.Properties())); //テスト用コード Sunshine724
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
