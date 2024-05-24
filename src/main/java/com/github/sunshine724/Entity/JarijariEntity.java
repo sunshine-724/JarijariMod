@@ -139,7 +139,7 @@ public class JarijariEntity extends Wolf {
                 } else {
                     //少し浮かす
                     isFloat = true;
-                    this.setPos(this.getX(),this.getY()+3,this.getZ());
+//                    this.setPos(this.getX(),this.getY()+3,this.getZ());
                     return interactionresult;
                 }
             }
