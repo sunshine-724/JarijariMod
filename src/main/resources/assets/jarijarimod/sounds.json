@@ -1,0 +1,17 @@
+{
+  "entity.custom_mob.hurt": {
+    "sounds": [
+      "jarijarimod:sounds/hurt"
+    ]
+  },
+  "entity.custom_mob.death": {
+    "sounds": [
+      "jarijarimod:sounds/death"
+    ]
+  },
+  "entity.custom_mob.living": {
+    "sounds": [
+      "jarijarimod:sounds/living"
+    ]
+  }
+}

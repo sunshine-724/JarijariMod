@@ -1,12 +1,13 @@
 package com.github.sunshine724.Entity;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -14,24 +15,25 @@ import net.minecraft.world.entity.ai.goal.target.*;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Turtle;
 import net.minecraft.world.entity.animal.Wolf;
-import net.minecraft.world.entity.animal.horse.Llama;
 import net.minecraft.world.entity.monster.AbstractSkeleton;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraftforge.unsafe.UnsafeFieldAccess;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import javax.print.AttributeException;
 
 /*エンティティの実装*/
 public class JarijariEntity extends Wolf {
     Boolean isFloat; //モブを浮かすかどうか
+    //各効果音をオーバーライド
+    @Nullable SoundEvent hurtSoundEvent = ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("jarijariMod", "entity.custom_mob.hurt"));
+    @Nullable SoundEvent deathSoundEvent = ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("jarijariMod", "entity.custom_mob.death"));
+    @Nullable SoundEvent livingSoundEvent = ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("jarijariMod", "entity.custom_mob.living"));
+
 
     //コンストラクタ
     public JarijariEntity(EntityType<JarijariEntity> type, Level Level) {
@@ -169,7 +171,29 @@ public class JarijariEntity extends Wolf {
         }
     }
 
+    /*効果音関連*/
+    //ダメージを受けた時
+    @Override
+    public boolean doHurtTarget(@NotNull Entity entityIn) {
+        boolean flag = super.doHurtTarget(entityIn);
+        if (flag) {
+            this.playSound(hurtSoundEvent, 1.0F, 1.0F);
+        }
+        return flag;
+    }
 
+    //死んだ時
+    @Override
+    public void die(@NotNull DamageSource cause) {
+        super.die(cause);
+        this.playSound(deathSoundEvent, 1.0F, 1.0F);
+    }
+
+    //環境音
+    @Override
+    public void playAmbientSound() {
+        this.playSound(livingSoundEvent, 1.0F, 1.0F);
+    }
 
 
 
