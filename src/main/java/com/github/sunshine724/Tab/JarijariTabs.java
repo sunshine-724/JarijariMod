@@ -17,6 +17,7 @@ public class JarijariTabs {
                     .icon(Jaitem.JARIHORSE.get()::getDefaultInstance)
                     .displayItems(((pParameters,pOutput) ->{
                         pOutput.accept(ItemSpawnerJarijari.SpawnerJarijari.get());
+                        pOutput.accept(Jaitem.JARIHORSE.get());
                     }))
                     .build());
 

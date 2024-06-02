@@ -65,7 +65,6 @@ public class JarijariMod
         //下の@Mod.EventBusSubscriberを参照
         modEventBus.addListener(this::addCreative);
         EntityInit.ENTITYS.register(modEventBus); //エンティティをレジストリに追加
-
     }
 
 
