@@ -10,7 +10,7 @@ import net.minecraftforge.registries.RegistryObject;
 public class Jaitem {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, JarijariMod.MODID);
 
-    public static final RegistryObject<Item> JARIHORSE = ITEMS.register("jarihorse", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> JARIHORSE = ITEMS.register("horse_tab", () -> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
