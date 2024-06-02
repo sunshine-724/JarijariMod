@@ -17,8 +17,7 @@ public class ItemSpawnerJarijari {
 //    public static final RegistryObject<Item> SpawnerJarijari = ITEMS.register("spawnerjarijari", () -> new Item(new Item.Properties()));
 
 
-    public static final RegistryObject<ForgeSpawnEggItem> SpawnerJarijari = ITEMS.register("spawnerjarijari",
-            () -> new ForgeSpawnEggItem(EntityInit.JARIJARI_ENTITY,0xFFFFFF,0,new Item.Properties())); //テスト用コード Sunshine724
+    public static final RegistryObject<ForgeSpawnEggItem> SpawnerJarijari = ITEMS.register("spawnerjarijari",() -> new ForgeSpawnEggItem(EntityInit.JARIJARI_ENTITY,0xFFFFFF,0,new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
