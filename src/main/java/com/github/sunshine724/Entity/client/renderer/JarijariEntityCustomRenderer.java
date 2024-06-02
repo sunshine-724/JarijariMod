@@ -12,6 +12,8 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.resources.ResourceLocation;
+import org.joml.AxisAngle4f;
+import org.joml.Quaternionf;
 
 public class JarijariEntityCustomRenderer extends EntityRenderer<JarijariEntity> {
 
@@ -45,6 +47,12 @@ public class JarijariEntityCustomRenderer extends EntityRenderer<JarijariEntity>
         poseStack.translate(0.0, 0.75, 0.0); // モデルの高さに合わせて調整(中心座標(0.0)を軸に回転させるため移動させる)
         poseStack.scale(1.0F, -1.0F, 1.0F);
         poseStack.translate(0.0, -0.75, 0.0); // モデルの高さに合わせて調整
+
+//        double dx = entity.getDeltaMovement().x;
+//        double dz = entity.getDeltaMovement().z;
+//        float angle = (float) (Math.atan2(dz, dx) * (180.0 / Math.PI) - 90.0);
+//        org.joml.Quaternionf Quaternionf = new Quaternionf(new AxisAngle4f((float) (Math.atan2(dz, dx) * (180.0 / Math.PI) - 90.0),0,0,0));
+//        poseStack.mulPose(Quaternionf);
         modelToRender.renderToBuffer(poseStack, bufferSource.getBuffer(modelToRender.renderType(getTextureLocation(entity))), packedLight, LivingEntityRenderer.getOverlayCoords(entity, 0.0F), 1.0F, 1.0F, 1.0F, 1.0F);
         poseStack.popPose();
 
@@ -61,6 +69,5 @@ public class JarijariEntityCustomRenderer extends EntityRenderer<JarijariEntity>
         }else{
             return new ResourceLocation(JarijariMod.MODID, "textures/entity/image2.png");
         }
-
     }
 }
