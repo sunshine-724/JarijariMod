@@ -1,12 +1,13 @@
 package com.github.sunshine724.Entity;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -14,20 +15,16 @@ import net.minecraft.world.entity.ai.goal.target.*;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Turtle;
 import net.minecraft.world.entity.animal.Wolf;
-import net.minecraft.world.entity.animal.horse.Llama;
 import net.minecraft.world.entity.monster.AbstractSkeleton;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraftforge.unsafe.UnsafeFieldAccess;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import javax.print.AttributeException;
 
 /*エンティティの実装*/
 public class JarijariEntity extends Wolf {
@@ -62,34 +59,34 @@ public class JarijariEntity extends Wolf {
 //    }
 
     //aiによるエンティティの動きを追加
-    @Override
-    protected void registerGoals() {
-        Item gravelItem = Items.GRAVEL; // 誘引対象のアイテム
-        //数字が低いほど優先順位が高くなる
-        //どの動きを追加したいかはGradle:net.minecraftforge:forge:~~~~/forge~~~~/net/minecraft/world.entity.ai.goalにあるサブクラスを参照
-//        if(isFloat){
-//            this.setPos(this.getX(),this.getY()+3,this.getZ());
-//        }else{
-//            this.setPos(this.getX(),this.getY()-3,this.getZ());
-//        }
-        this.goalSelector.addGoal(1, new FloatGoal(this));
-        this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
-        this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.4F));
-        this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.0, true));
-        this.goalSelector.addGoal(6, new FollowOwnerGoal(this, 1.0, 10.0F, 2.0F, false));
-        this.goalSelector.addGoal(7, new BreedGoal(this, 1.0));
-        this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 1.0));
-        this.goalSelector.addGoal(9, new BegGoal(this, 8.0F));
-        this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Player.class, 8.0F));
-        this.goalSelector.addGoal(10, new RandomLookAroundGoal(this));
-        this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
-        this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
-        this.targetSelector.addGoal(3, (new HurtByTargetGoal(this, new Class[0])).setAlertOthers(new Class[0]));
-        this.targetSelector.addGoal(5, new NonTameRandomTargetGoal(this, Animal.class, false, PREY_SELECTOR));
-        this.targetSelector.addGoal(6, new NonTameRandomTargetGoal(this, Turtle.class, false, Turtle.BABY_ON_LAND_SELECTOR));
-        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, AbstractSkeleton.class, false));
-        this.targetSelector.addGoal(8, new ResetUniversalAngerTargetGoal(this, true));
-    }
+//    @Override
+//    protected void registerGoals() {
+//        Item gravelItem = Items.GRAVEL; // 誘引対象のアイテム
+//        //数字が低いほど優先順位が高くなる
+//        //どの動きを追加したいかはGradle:net.minecraftforge:forge:~~~~/forge~~~~/net/minecraft/world.entity.ai.goalにあるサブクラスを参照
+////        if(isFloat){
+////            this.setPos(this.getX(),this.getY()+3,this.getZ());
+////        }else{
+////            this.setPos(this.getX(),this.getY()-3,this.getZ());
+////        }
+//        this.goalSelector.addGoal(1, new FloatGoal(this));
+//        this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
+//        this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.4F));
+//        this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.0, true));
+//        this.goalSelector.addGoal(6, new FollowOwnerGoal(this, 1.0, 10.0F, 2.0F, false));
+//        this.goalSelector.addGoal(7, new BreedGoal(this, 1.0));
+//        this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 1.0));
+//        this.goalSelector.addGoal(9, new BegGoal(this, 8.0F));
+//        this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Player.class, 8.0F));
+//        this.goalSelector.addGoal(10, new RandomLookAroundGoal(this));
+//        this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
+//        this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
+//        this.targetSelector.addGoal(3, (new HurtByTargetGoal(this, new Class[0])).setAlertOthers(new Class[0]));
+//        this.targetSelector.addGoal(5, new NonTameRandomTargetGoal(this, Animal.class, false, PREY_SELECTOR));
+//        this.targetSelector.addGoal(6, new NonTameRandomTargetGoal(this, Turtle.class, false, Turtle.BABY_ON_LAND_SELECTOR));
+//        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, AbstractSkeleton.class, false));
+//        this.targetSelector.addGoal(8, new ResetUniversalAngerTargetGoal(this, true));
+//    }
 
     //モブがプレイヤーに誘引されるかどうか(砂利で好感度を上げる)
     public @NotNull InteractionResult mobInteract(@NotNull Player pPlayer, InteractionHand pHand) {
@@ -139,7 +136,7 @@ public class JarijariEntity extends Wolf {
                 } else {
                     //少し浮かす
                     isFloat = true;
-                    this.setPos(this.getX(),this.getY()+3,this.getZ());
+//                    this.setPos(this.getX(),this.getY()+3,this.getZ());
                     return interactionresult;
                 }
             }
@@ -170,6 +167,29 @@ public class JarijariEntity extends Wolf {
     }
 
 
+    /*効果音関連*/
+//    //ダメージを受けた時
+//    @Override
+//    public boolean doHurtTarget(@NotNull Entity entityIn) {
+//        boolean flag = super.doHurtTarget(entityIn);
+//        if (flag) {
+//            this.playSound(hurtSoundEvent, 1.0F, 1.0F);
+//        }
+//        return flag;
+//    }
+//
+//    //死んだ時
+//    @Override
+//    public void die(@NotNull DamageSource cause) {
+//        super.die(cause);
+//        this.playSound(deathSoundEvent, 1.0F, 1.0F);
+//    }
+//
+//    //環境音
+//    @Override
+//    public void playAmbientSound() {
+//        this.playSound(livingSoundEvent, 1.0F, 1.0F);
+//    }
 
 
 
