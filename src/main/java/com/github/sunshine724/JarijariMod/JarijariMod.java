@@ -34,18 +34,18 @@ public class JarijariMod
         //イベントバスに関連するクラスIEventBusのeventbus静的変数を格納
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        //試験的に追加,あさひ
+        //試験的に追加
         MinecraftForge.EVENT_BUS.register(modEventBus);
 
 
-        //アイテムレジストリをイベントバスに登録,あさひ
+        //アイテムレジストリをイベントバスに登録
         ItemSpawnerJarijari.register(modEventBus);
 
-        //アイテムレジストリをイベントバスに登録,佐々木
+        //アイテムレジストリをイベントバスに登録
         Jaitem.register(modEventBus);
 
 
-        //クリエイティブタブをイベントバスに登録,佐々木
+        //クリエイティブタブをイベントバスに登録
         JarijariTabs.register(modEventBus);
 
         //このクラスのインスタンスを渡してインスタンスをイベントバスのリスナーとして登録する
